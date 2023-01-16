@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     # localhost:8000/onememos/ ## 기본 주소
-    path('', views.index, name='index'),
-
+    path('', views.main, name='main'),
+    path('createMemo/', views.createMemo),
 ]
