@@ -22,12 +22,27 @@
             {% csrf_token %}
             <!--CSRF(Cross Site Request Forgery)-->
             <label for="memo">한 줄 메모 입력</label>
-            <input type="text" id="memo" name="memoContent" size="100"
+            <input type="text" id="memo" name="memoContent" size="70"
                    placeholder="한 줄 메모 내용을 작성하세요!" autocomplete="off">
+
+            <button type="submit" form="memoWriteForm">한 줄 메모 등록하기</button>
         </form>
 
-        <div>
-            <button type="submit" form="memoWriteForm">한 줄 메모 등록하기</button>
+        <!-- 리스트뷰 -->
+        <div style="padding-top:50px">
+            <ul style="line-height:2em">
+
+                {% for article in lists %}
+                    <li>
+                        <b>{{article.id}}</b>.
+                        {{article.memo_text}}
+                        <small style="color:deeppink;font-weight:bold">
+                            ({{article.published_date|date:'Y-m-d'}})
+                        </small>
+                    </li>
+                {% endfor %}
+
+            </ul>
         </div>
 
     </body>
