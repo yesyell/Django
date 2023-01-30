@@ -34,3 +34,13 @@ def createMemo(request):
 
     # reverse + name 사용하여 리다이렉트
     return HttpResponseRedirect(reverse('main'))
+
+def writeMemo(request):
+    # return HttpResponse('Write Page 요청')
+    # Get vs Post 분기 처리
+    if request.method == "GET":
+        return HttpResponse('GET 방식 -> 글 쓰기 폼 페이지를 보여주세요~')
+        # return render(request, 'my_template.html', {'Method':'GET 방식'})
+    if request.method == "POST":
+        return HttpResponse('POST 방식 -> DB에 입력해주세요~')
+        # return render(request, 'my_template.html', {'Method': 'POST 방식'})
