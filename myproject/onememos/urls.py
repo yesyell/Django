@@ -9,4 +9,7 @@ urlpatterns = [
 
     # 하나의 요청 -> 2개의 방식(Get vs Post)
     path('writeMemo/', views.writeMemo),
+
+    # 수정 처리 요청
+    path('edit/<str:idx>', views.editPage),
 ]

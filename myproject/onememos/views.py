@@ -44,3 +44,6 @@ def writeMemo(request):
     if request.method == "POST":
         return HttpResponse('POST 방식 -> DB에 입력해주세요~')
         # return render(request, 'my_template.html', {'Method': 'POST 방식'})
+
+def editPage(request, idx):
+    return HttpResponse('수정 페이지 = '+idx)
