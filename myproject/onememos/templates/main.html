@@ -51,8 +51,9 @@
                         <small style="color:deeppink;font-weight:bold">
                             ({{article.published_date|date:'Y-m-d'}})
                         </small>
-                        &nbsp;&nbsp;&nbsp;
-                        [<a href="./edit/{{article.id}}">Edit</a>]
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        [<a href="./edit/{{article.id}}" style="font-weight:bold">Edit</a>]
+                        [<a href="./delete/{{article.id}}" style="font-weight:bold">Del</a>]
                     </li>
                 {% endfor %}
 

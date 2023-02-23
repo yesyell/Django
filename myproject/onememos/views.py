@@ -22,12 +22,8 @@ def createMemo(request):
     # memoContent = request.GET['memoContent']
     memoContent = request.POST['memoContent']
 
-    # DB 입력
-    # 만약 DB에 저장이 안된다면
-    # 맨 위에서 models.py 파일에서 모든 것을 임포트했는지 체크 ⭐
-    # NOT NULL 필드 입력했는지 체크
-    # article = Memo(memo_text = memoContent)
-    # article.save()
+    article = Memo(memo_text = memoContent)
+    article.save()
 
     # return HttpResponse("Create Memo = " + memoContent)
     # -> localhost:8000/onememos/createMemo/?memoContent=대한민국
@@ -46,4 +42,27 @@ def writeMemo(request):
         # return render(request, 'my_template.html', {'Method': 'POST 방식'})
 
 def editPage(request, idx):
-    return HttpResponse('수정 페이지 = '+idx)
+    # return HttpResponse('수정 페이지 = '+idx)
+    article = Memo.objects.get(id=idx)
+    data = {'article':article}
+
+    return render(request, 'edit.html', data)
+
+def updateMemo(request):
+    idx = request.POST['idx']
+    memoContent = request.POST['memoContent']
+    # return HttpResponse(f'idx={idx}, memoContent={memoContent}')
+
+    # 실질적인 DB에서의 수정 처리
+    db_article = Memo.objects.get(id=idx)
+    db_article.memo_text = memoContent
+    db_article.save()
+
+    return HttpResponseRedirect(reverse('main'))
+
+def deleteMemo(rewuest,idx):
+    # DB 삭제 처리
+    db_article = Memo.objects.get(id=idx)
+    db_article.delete()
+
+    return HttpResponseRedirect(reverse('main'))
